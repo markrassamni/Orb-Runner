@@ -1,0 +1,31 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BallController : MonoBehaviour {
+	[SerializeField] private float speedX;
+	[SerializeField] private float speedZ;
+	[SerializeField] private float jumpForce;
+	private Rigidbody rb;
+
+	void Awake(){
+		rb = GetComponent<Rigidbody>();
+	}
+
+	void FixedUpdate(){
+		RotateBall();
+	}
+
+	private void RotateBall(){
+		rb.velocity = new Vector3(0f, rb.velocity.y, speedZ);
+		if (Input.GetKey("left") || Input.GetKey("a")){
+			rb.velocity = new Vector3(-speedX, rb.velocity.y, rb.velocity.z);
+		} 
+		if (Input.GetKey("right") || Input.GetKey("d")){
+			rb.velocity = new Vector3(speedX, rb.velocity.y, rb.velocity.z);
+		}
+		if(Input.GetKey(KeyCode.Space) && rb.velocity.y == 0f){
+			rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+		}
+	}
+}
