@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : Singleton<SceneController> {
 	
-	override protected void Awake(){
+	protected override void Awake(){
 		base.Awake();
 		DontDestroyOnLoad(this);
 	}
