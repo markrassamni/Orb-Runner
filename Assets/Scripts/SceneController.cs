@@ -18,6 +18,14 @@ public class SceneController : Singleton<SceneController> {
 		SceneManager.LoadScene("MainMenu");
 	}
 
+	public void LoadInstructions(){
+		SceneManager.LoadScene("Instructions");
+	}
+
+	public void LoadCredits(){
+		SceneManager.LoadScene("Credits");
+	}
+
 	public void ExitGame(){
 		#if UNITY_EDITOR
 			UnityEditor.EditorApplication.isPlaying = false;
