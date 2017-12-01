@@ -17,7 +17,11 @@ public class BallController : MonoBehaviour {
 	}
 
 	private void RotateBall(){
-		rb.velocity = new Vector3(0f, rb.velocity.y, speedZ);
+		if (Input.GetKey("s") || Input.GetKey("down")){
+			rb.velocity = new Vector3(0f, rb.velocity.y, speedZ/2f);
+		} else{
+			rb.velocity = new Vector3(0f, rb.velocity.y, speedZ);
+		}
 		if (Input.GetKey("left") || Input.GetKey("a")){
 			rb.velocity = new Vector3(-speedX, rb.velocity.y, rb.velocity.z);
 		} 
