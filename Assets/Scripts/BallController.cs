@@ -32,4 +32,10 @@ public class BallController : MonoBehaviour {
 			rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 		}
 	}
+
+	private void OnTriggerEnter(Collider other){
+		if (other.tag == "GameOver"){
+			SceneController.Instance.LoadGame();
+		}
+	}
 }
