@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class PlatformController : MonoBehaviour{
 
@@ -12,6 +13,18 @@ public class PlatformController : MonoBehaviour{
 	private bool moveRight, moveUp, moveForward;
 	
 	void Start(){
+		if (moveDistance.x != 0f || moveSpeed.x != 0f){
+			Assert.AreNotEqual(0f, moveDistance.x);
+			Assert.AreNotEqual(0f, moveSpeed.x);
+		}
+		if (moveDistance.y != 0f || moveSpeed.y != 0f){
+			Assert.AreNotEqual(0f, moveDistance.y);
+			Assert.AreNotEqual(0f, moveSpeed.y);
+		}
+		if (moveDistance.z != 0f || moveSpeed.z != 0f){
+			Assert.AreNotEqual(0f, moveDistance.z);
+			Assert.AreNotEqual(0f, moveSpeed.z);
+		}
 		CalculateMinMax();
 		SetStartDirection();
 	}
