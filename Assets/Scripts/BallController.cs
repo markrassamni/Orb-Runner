@@ -34,7 +34,7 @@ public class BallController : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter(Collider other){
-		if (other.tag == "GameOver"){
+		if (other.CompareTag("GameOver")){
 			SceneController.Instance.LoadGame();
 		}
 	}
