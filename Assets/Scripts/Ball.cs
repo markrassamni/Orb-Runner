@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallController : MonoBehaviour {
+public class Ball : MonoBehaviour {
 	[SerializeField] private float speedX;
 	[SerializeField] private float speedZ;
 	[SerializeField] private float jumpForce;
@@ -13,10 +13,10 @@ public class BallController : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		RotateBall();
+		Move();
 	}
 
-	private void RotateBall(){
+	private void Move(){
 		if (Input.GetKey("s") || Input.GetKey("down")){
 			rb.velocity = new Vector3(0f, rb.velocity.y, speedZ/2f);
 		} else{
