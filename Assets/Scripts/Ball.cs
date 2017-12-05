@@ -6,14 +6,17 @@ public class Ball : MonoBehaviour {
 	[SerializeField] private float speedX;
 	[SerializeField] private float speedZ;
 	[SerializeField] private float jumpForce;
+	[SerializeField] private float collisionDelay;
 	private Rigidbody rb;
+	private bool stopMoving;
 
 	void Awake(){
 		rb = GetComponent<Rigidbody>();
 	}
 
 	void FixedUpdate(){
-		Move();
+		if(!stopMoving)
+			Move();
 	}
 
 	private void Move(){
@@ -30,6 +33,18 @@ public class Ball : MonoBehaviour {
 		}
 		if(Input.GetKey(KeyCode.Space) && rb.velocity.y == 0f){
 			rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+		}
+	}
+
+	private IEnumerator Collide(){
+		stopMoving = true;
+		yield return new WaitForSeconds(collisionDelay);
+		stopMoving = false;
+	}
+
+	private void OnCollisionEnter(Collision other){
+		if (other.gameObject.CompareTag("Weapon")){
+			StartCoroutine(Collide());
 		}
 	}
 

@@ -265,6 +265,7 @@ MonoBehaviour:
   speedX: 6
   speedZ: 10
   jumpForce: 6
+  collisionDelay: 1
 --- !u!1 &517843935
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,6 +1274,7 @@ MonoBehaviour:
   speedX: 6
   speedZ: 10
   jumpForce: 6
+  collisionDelay: 0
 --- !u!1001 &1627760732
 Prefab:
   m_ObjectHideFlags: 0
