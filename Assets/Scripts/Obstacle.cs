@@ -6,6 +6,7 @@ using UnityEngine.Assertions;
 
 public class Obstacle : MonoBehaviour{
 
+	[SerializeField] private bool loopRotation;
 	[SerializeField] private Vector3 rotateSpeed;
 	[SerializeField] private Vector3 rotateAngle;
 
@@ -36,35 +37,35 @@ public class Obstacle : MonoBehaviour{
 	private void Rotate(){
 		if (rotatePosX){
 			transform.Rotate(Vector3.right * Time.deltaTime * rotateSpeed.x);
-			if (transform.rotation.x >= maxRotation.x){
+			if (!loopRotation && transform.rotation.x >= maxRotation.x){
 				rotatePosX = false;
 			}
 		} else{
 			transform.Rotate(Vector3.left * Time.deltaTime * rotateSpeed.x);
-			if (transform.rotation.x <= minRotation.x){
+			if (!loopRotation && transform.rotation.x <= minRotation.x){
 				rotatePosX = true;
 			}
 		}
 		if (rotatePosY){
 			transform.Rotate(Vector3.up * Time.deltaTime * rotateSpeed.y);
-			if (transform.rotation.y >= maxRotation.y){
+			if (!loopRotation && transform.rotation.y >= maxRotation.y){
 				rotatePosY = false;
 			}
 		} else{
 			transform.Rotate(Vector3.down * Time.deltaTime * rotateSpeed.y);
-			if (transform.rotation.y <= minRotation.y){
+			if (!loopRotation && transform.rotation.y <= minRotation.y){
 				rotatePosY = true;
 			}
 		}
 		
 		if (rotatePosZ){
 			transform.Rotate(Vector3.forward * Time.deltaTime * rotateSpeed.z);
-			if (transform.rotation.z >= maxRotation.z){
+			if (!loopRotation && transform.rotation.z >= maxRotation.z){
 				rotatePosZ = false;
 			}
 		} else{
 			transform.Rotate(Vector3.back * Time.deltaTime * rotateSpeed.z);
-			if (transform.rotation.z <= minRotation.z){
+			if (!loopRotation && transform.rotation.z <= minRotation.z){
 				rotatePosZ = true;
 			}
 		}
