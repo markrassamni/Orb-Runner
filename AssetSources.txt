@@ -5,3 +5,4 @@ Music: https://www.assetstore.unity3d.com/en/#!/content/92835
 Skybox: https://www.assetstore.unity3d.com/en/#!/content/25582
 Balls: https://assetstore.unity.com/packages/3d/props/ball-pack-446
 Hammer: https://assetstore.unity.com/packages/3d/runic-stone-hammer-67297
+Fireball: https://assetstore.unity.com/packages/vfx/shaders/pyroclastic-explosions-10580

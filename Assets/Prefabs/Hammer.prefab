@@ -137,8 +137,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf3112518071e4a5785fb4ec6eb07efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loopRotation: 0
   rotateSpeed: {x: 100, y: 0, z: 0}
   rotateAngle: {x: 90, y: 0, z: 0}
+  moveDelay: 1
 --- !u!136 &136626153219592568
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GameOver
   - Weapon
+  - Fireball
   layers:
   - Default
   - TransparentFX

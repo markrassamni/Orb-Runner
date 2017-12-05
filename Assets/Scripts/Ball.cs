@@ -6,7 +6,6 @@ public class Ball : MonoBehaviour {
 	[SerializeField] private float speedX;
 	[SerializeField] private float speedZ;
 	[SerializeField] private float jumpForce;
-	[SerializeField] private float collisionDelay;
 	private Rigidbody rb;
 	private bool stopMoving;
 
@@ -36,21 +35,39 @@ public class Ball : MonoBehaviour {
 		}
 	}
 
-	private IEnumerator Collide(){
+	private IEnumerator Collide(float moveDelay){
 		stopMoving = true;
-		yield return new WaitForSeconds(collisionDelay);
+		yield return new WaitForSeconds(moveDelay);
 		stopMoving = false;
 	}
 
 	private void OnCollisionEnter(Collision other){
 		if (other.gameObject.CompareTag("Weapon")){
-			StartCoroutine(Collide());
+			Hammer hammer = other.gameObject.GetComponentInParent<Hammer>();
+			StartCoroutine(Collide(hammer.MoveDelay));
 		}
 	}
 
 	private void OnTriggerEnter(Collider other){
 		if (other.CompareTag("GameOver")){
 			SceneController.Instance.LoadGame();
+		}
+		if (other.CompareTag("Fireball")){
+			Fireball fireball = other.GetComponent<Fireball>();
+			StartCoroutine(Collide(fireball.MoveDelay));
+			rb.velocity = Vector3.zero;
+			rb.AddForce(Vector3.up * fireball.HitForce.y, ForceMode.Impulse);
+			if (Random.value < 0.5){
+				rb.AddForce(Vector3.left * fireball.HitForce.x, ForceMode.Impulse);
+			} else{
+				rb.AddForce(Vector3.right * fireball.HitForce.x, ForceMode.Impulse);
+			}
+			if (Random.value < 0.5){
+				rb.AddForce(Vector3.forward * fireball.HitForce.z, ForceMode.Impulse);
+			} else{
+				rb.AddForce(Vector3.back * fireball.HitForce.z, ForceMode.Impulse);
+			}
+			
 		}
 	}
 }

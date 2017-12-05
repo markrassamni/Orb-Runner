@@ -4,16 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class Obstacle : MonoBehaviour{
+public class Hammer : MonoBehaviour{
 
 	[SerializeField] private bool loopRotation;
 	[SerializeField] private Vector3 rotateSpeed;
 	[SerializeField] private Vector3 rotateAngle;
+	[SerializeField] private float moveDelay;
 
 	private Vector3 minRotation;
 	private Vector3 maxRotation;
 	private bool rotatePosX, rotatePosY, rotatePosZ;
 	
+	public float MoveDelay{
+		get{ return moveDelay; }
+	}
+
 	void Start(){
 		if (rotateSpeed.x != 0f || rotateAngle.x != 0f){
 			Assert.AreNotEqual(0f, rotateAngle.x);
