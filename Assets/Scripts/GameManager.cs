@@ -19,4 +19,12 @@ public class GameManager : Singleton<GameManager>{
 		StartCoroutine(SpawnFireball());
 		yield return new WaitForSeconds(5f);
 	}
+
+	public void WinGame(){
+		print("Won Game!");
+	}
+
+	public void LoseGame(){
+		SceneController.Instance.LoadGame();
+	}
 }

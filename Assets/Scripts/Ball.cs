@@ -46,11 +46,15 @@ public class Ball : MonoBehaviour {
 			Hammer hammer = other.gameObject.GetComponentInParent<Hammer>();
 			StartCoroutine(Collide(hammer.MoveDelay));
 		}
+		if (other.gameObject.CompareTag("Ring")){
+			rb.velocity = Vector3.zero;
+			StartCoroutine(Collide(1.5f));
+		}
 	}
 
 	private void OnTriggerEnter(Collider other){
 		if (other.CompareTag("GameOver")){
-			SceneController.Instance.LoadGame();
+			GameManager.Instance.LoseGame();
 		}
 		if (other.CompareTag("Fireball")){
 			Fireball fireball = other.GetComponent<Fireball>();
@@ -67,7 +71,9 @@ public class Ball : MonoBehaviour {
 			} else{
 				rb.AddForce(Vector3.back * fireball.HitForce.z, ForceMode.Impulse);
 			}
-			
+		}
+		if (other.CompareTag("GameWon")){
+			GameManager.Instance.WinGame();
 		}
 	}
 }
