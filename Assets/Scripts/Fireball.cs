@@ -46,9 +46,6 @@ public class Fireball : MonoBehaviour{
 	}
 	
 	void Update(){
-		if (explosionMat._alpha < 1f){
-			explosionMat._alpha += alphaChangeSpeed * Time.deltaTime;
-		}
 		if (shooting){
 			transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * moveSpeed);
 		}
