@@ -9,6 +9,7 @@ TagManager:
   - Fireball
   - GameWon
   - Ring
+  - WallOfFire
   layers:
   - Default
   - TransparentFX

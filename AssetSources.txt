@@ -7,3 +7,4 @@ Balls: https://assetstore.unity.com/packages/3d/props/ball-pack-446
 Hammer: https://assetstore.unity.com/packages/3d/runic-stone-hammer-67297
 Fireball: https://assetstore.unity.com/packages/vfx/shaders/pyroclastic-explosions-10580
 Platform Texture: https://opengameart.org/content/glowing-hexagon-free-tiling-texture
+Fire: https://assetstore.unity.com/packages/vfx/particles/fire-explosions/fire-spell-effects-36825

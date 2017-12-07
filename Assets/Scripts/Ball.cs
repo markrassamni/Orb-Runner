@@ -8,9 +8,21 @@ public class Ball : MonoBehaviour {
 	[SerializeField] private float jumpForce;
 	private Rigidbody rb;
 	private bool stopMoving;
+	private float timeToMove;
+	private const float max_move_delay = 2f;
 
 	void Awake(){
 		rb = GetComponent<Rigidbody>();
+	}
+
+	void Update(){
+		if (stopMoving){
+			timeToMove -= Time.deltaTime;
+			if (timeToMove <= 0f){
+				stopMoving = false;
+				timeToMove = 0f;
+			}
+		}
 	}
 
 	void FixedUpdate(){
@@ -35,20 +47,23 @@ public class Ball : MonoBehaviour {
 		}
 	}
 
-	private IEnumerator Collide(float moveDelay){
+	private void Collide(float moveDelay){
 		stopMoving = true;
-		yield return new WaitForSeconds(moveDelay);
-		stopMoving = false;
+		if (timeToMove + moveDelay < max_move_delay){
+			timeToMove += moveDelay;
+		} else{
+			timeToMove = max_move_delay;
+		}
 	}
 
 	private void OnCollisionEnter(Collision other){
 		if (other.gameObject.CompareTag("Weapon")){
 			Hammer hammer = other.gameObject.GetComponentInParent<Hammer>();
-			StartCoroutine(Collide(hammer.MoveDelay));
+			Collide(hammer.MoveDelay);
 		}
 		if (other.gameObject.CompareTag("Ring")){
 			rb.velocity = Vector3.zero;
-			StartCoroutine(Collide(1.5f));
+			Collide(1.5f);
 		}
 	}
 
@@ -58,7 +73,7 @@ public class Ball : MonoBehaviour {
 		}
 		if (other.CompareTag("Fireball")){
 			Fireball fireball = other.GetComponent<Fireball>();
-			StartCoroutine(Collide(fireball.MoveDelay));
+			Collide(fireball.MoveDelay);
 			rb.velocity = Vector3.zero;
 			rb.AddForce(Vector3.up * fireball.HitForce.y, ForceMode.Impulse);
 			if (Random.value < 0.5){
@@ -74,6 +89,22 @@ public class Ball : MonoBehaviour {
 		}
 		if (other.CompareTag("GameWon")){
 			GameManager.Instance.WinGame();
+		}
+		if (other.CompareTag("WallOfFire")){
+			// TODO: set values for what happens on fire contact, make fire wall script?
+			Collide(1f);
+			rb.velocity = Vector3.zero;
+			rb.AddForce(Vector3.up * 8f, ForceMode.Impulse);
+			if (Random.value < 0.5){
+				rb.AddForce(Vector3.left * 2f, ForceMode.Impulse);
+			} else{
+				rb.AddForce(Vector3.right * 2f, ForceMode.Impulse);
+			}
+			if (Random.value < 0.5){
+				rb.AddForce(Vector3.forward * 2f, ForceMode.Impulse);
+			} else{
+				rb.AddForce(Vector3.back * 2f, ForceMode.Impulse);
+			}
 		}
 	}
 }
