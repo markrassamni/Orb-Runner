@@ -27,9 +27,13 @@ public class GameManager : Singleton<GameManager>{
 	
 	IEnumerator Start(){
 		player = FindObjectOfType<Ball>();
-		StartCoroutine(SpawnFireWall());
+		if (fireWallSpawnTime < Mathf.Infinity){
+			StartCoroutine(SpawnFireWall());
+		}
 		yield return new WaitForSeconds(2f);
-		StartCoroutine(SpawnFireball());
+		if (fireballSpawnDelay < Mathf.Infinity){
+			StartCoroutine(SpawnFireball());
+		}
 	}
 
 	private IEnumerator SpawnFireball(){

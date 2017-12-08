@@ -2413,6 +2413,11 @@ Prefab:
       propertyPath: moveDelay
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114626707838049056, guid: 2f82d76c6f768459eb9ddf72312a7538,
+        type: 2}
+      propertyPath: loopRotation
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f82d76c6f768459eb9ddf72312a7538, type: 2}
   m_IsPrefabParent: 0
