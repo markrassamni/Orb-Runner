@@ -52,6 +52,15 @@ public class Fireball : MonoBehaviour{
 	void Update(){
 		if (shooting){
 			transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * moveSpeed);
+			if (transform.position == target){
+				shooting = false;
+			}
+		}
+	}
+
+	private void OnTriggerEnter(Collider other){
+		if (other.CompareTag("Platform")){
+			transform.parent = other.transform;
 		}
 	}
 }

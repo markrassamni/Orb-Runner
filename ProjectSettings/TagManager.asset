@@ -10,6 +10,7 @@ TagManager:
   - GameWon
   - Ring
   - WallOfFire
+  - Platform
   layers:
   - Default
   - TransparentFX
