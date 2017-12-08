@@ -91,19 +91,19 @@ public class Ball : MonoBehaviour {
 			GameManager.Instance.WinGame();
 		}
 		if (other.CompareTag("WallOfFire")){
-			// TODO: set values for what happens on fire contact, make fire wall script?
-			Collide(1f);
+			FireWall fireWall = other.GetComponentInParent<FireWall>();
+			Collide(fireWall.MoveDelay);
 			rb.velocity = Vector3.zero;
-			rb.AddForce(Vector3.up * 8f, ForceMode.Impulse);
+			rb.AddForce(Vector3.up * fireWall.HitForce.y, ForceMode.Impulse);
 			if (Random.value < 0.5){
-				rb.AddForce(Vector3.left * 2f, ForceMode.Impulse);
+				rb.AddForce(Vector3.left * fireWall.HitForce.x, ForceMode.Impulse);
 			} else{
-				rb.AddForce(Vector3.right * 2f, ForceMode.Impulse);
+				rb.AddForce(Vector3.right * fireWall.HitForce.x, ForceMode.Impulse);
 			}
 			if (Random.value < 0.5){
-				rb.AddForce(Vector3.forward * 2f, ForceMode.Impulse);
+				rb.AddForce(Vector3.forward * fireWall.HitForce.z, ForceMode.Impulse);
 			} else{
-				rb.AddForce(Vector3.back * 2f, ForceMode.Impulse);
+				rb.AddForce(Vector3.back * fireWall.HitForce.z, ForceMode.Impulse);
 			}
 		}
 	}

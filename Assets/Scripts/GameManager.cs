@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.EventSystems;
 
 public class GameManager : Singleton<GameManager>{
 
@@ -43,10 +45,32 @@ public class GameManager : Singleton<GameManager>{
 	private IEnumerator SpawnFireWall(){
 		yield return new WaitForSeconds(fireWallSpawnTime);
 		Vector3 spawnPoint = new Vector3(0f, 0f, player.transform.position.z + 25f + Random.Range(-5f, 5f));
+		if (!Physics.Raycast(spawnPoint, Vector3.down, 3f)){
+			int moveDirection = Random.Range(0, 2) - 1;
+			for (int i = 0; i < 10; i++){
+				if (!Physics.Raycast(spawnPoint, new Vector3(0, -1, 0), 3f)){
+					spawnPoint.z += moveDirection;
+				} else{
+					break;
+				}
+			}
+			spawnPoint.z += 10f * moveDirection;
+		} else{
+			for (float i = 0f; i < 10f; i += .5f){
+				if (!Physics.Raycast(new Vector3(spawnPoint.x, spawnPoint.y, spawnPoint.z + i), Vector3.down, 3f)){
+					spawnPoint.z -= 10f;
+					break;
+				}
+				if (!Physics.Raycast(new Vector3(spawnPoint.x, spawnPoint.y, spawnPoint.z - i), Vector3.down, 3f)){
+					spawnPoint.z += 10f;
+					break;
+				}
+			}
+		}
 		if (spawnPoint.z > ring.transform.position.z){
 			yield break;
 		}
-		Instantiate(fireWallPrefab, spawnPoint, fireWallPrefab.transform.rotation, obstacleParent.transform);
+		Instantiate(fireWallPrefab, spawnPoint, fireWallPrefab.transform.rotation);
 		StartCoroutine(SpawnFireWall());
 	}
 
