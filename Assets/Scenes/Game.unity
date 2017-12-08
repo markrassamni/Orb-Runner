@@ -275,6 +275,7 @@ MonoBehaviour:
   fireWallSpawnTime: 5.5
   fireWallPrefab: {fileID: 1462995672602644, guid: 99700a30bf7a84631baa6ca6c1312c84,
     type: 2}
+  ring: {fileID: 1707379368}
 --- !u!1001 &421737720
 Prefab:
   m_ObjectHideFlags: 0
@@ -1699,6 +1700,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1672356439}
+--- !u!1 &1707379368 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1314815875284694, guid: 9572753e5823640d283c0c9d7da60b8d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1819119406}
 --- !u!1 &1804407935
 GameObject:
   m_ObjectHideFlags: 0

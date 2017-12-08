@@ -18,6 +18,10 @@ public class Fireball : MonoBehaviour{
 	public float MoveDelay{
 		get{ return moveDelay; }
 	}
+	
+	public Vector3 SpawnOffset{
+		get{ return spawnOffset; }
+	}
 
 	public Vector3 HitForce{ get{ return hitForce; } }
 
