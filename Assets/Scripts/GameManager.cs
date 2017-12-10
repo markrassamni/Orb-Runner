@@ -13,7 +13,12 @@ public class GameManager : Singleton<GameManager>{
 	[SerializeField] private float fireWallSpawnTime;
 	[SerializeField] private GameObject fireWallPrefab;
 	[SerializeField] private GameObject ring;
+	[SerializeField] private GameObject pausePanel;
 	private Ball player;
+	private bool gameOver;
+	private bool gameWon;
+	private bool paused;
+
 
 	protected override void Awake(){
 		base.Awake();
@@ -33,6 +38,12 @@ public class GameManager : Singleton<GameManager>{
 		yield return new WaitForSeconds(2f);
 		if (fireballSpawnDelay < Mathf.Infinity){
 			StartCoroutine(SpawnFireball());
+		}
+	}
+
+	void Update(){
+		if (Input.GetKeyDown(KeyCode.Escape) && !gameOver && !gameWon){
+			Pause();
 		}
 	}
 
@@ -78,11 +89,36 @@ public class GameManager : Singleton<GameManager>{
 		StartCoroutine(SpawnFireWall());
 	}
 
+	public void Pause(){
+		if(!gameOver) {
+			paused = !paused;
+			if(paused){
+				SoundController.Instance.Pause();
+				Time.timeScale = 0f;
+				pausePanel.SetActive(true);
+			} else {
+				SoundController.Instance.UnPause();
+				Time.timeScale = 1f;
+				pausePanel.SetActive(false);
+			}
+		}
+	}
+	
+	public void GoToMenu(){
+		if(paused){
+			Pause();
+		}
+		SceneController.Instance.LoadMenu();
+	}
+
 	public void WinGame(){
 		print("Won Game!");
+		gameWon = true;
 	}
 
 	public void LoseGame(){
+		// TODO: remove scene change
 		SceneController.Instance.LoadGame();
+		gameOver = true;
 	}
 }
