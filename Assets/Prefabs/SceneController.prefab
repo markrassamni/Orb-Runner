@@ -51,3 +51,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 935dd5d8be68b4894a724adbe52438ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unlockedImage: {fileID: 21300000, guid: 6858abb4516aae344881bf286b3aac33, type: 3}

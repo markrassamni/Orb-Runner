@@ -141,6 +141,7 @@ public class GameManager : Singleton<GameManager>{
 			changeScene = SceneController.Instance.LoadNextLevel;
 			winLoseText.text = "You Win!";
 		}
+		SceneController.Instance.WinLevel();
 		SoundController.Instance.PlayGameWon();
 		changeSceneButton.GetComponentInChildren<Text>().text = "Next Level";
 		gameOverPanel.SetActive(true);

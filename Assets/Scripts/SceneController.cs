@@ -7,13 +7,14 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SceneController : Singleton<SceneController>{
-
+	[SerializeField] private Sprite unlockedImage;
 	private string previousSceneName;
 	private readonly string[] gameSceneNames = {"Level1", "Level2", "Level3", "Level4", "Level5" , "FirstLevel", "Game"};
 	
 	protected override void Awake(){
 		base.Awake();
 		DontDestroyOnLoad(this);
+		BinaryManager.Load();
 	}
 
 	void Start(){
@@ -24,6 +25,9 @@ public class SceneController : Singleton<SceneController>{
 	private void OnSceneLoaded(Scene nextScene, LoadSceneMode mode){
 		if(gameSceneNames.Contains(previousSceneName)&& nextScene.name == "MainMenu"){
 			SoundController.Instance.PlayMenuMusic();
+		}
+		if (nextScene.name == "LevelSelect"){
+			UnlockLevelButtons();
 		}
 		previousSceneName = nextScene.name; 
 	}
@@ -49,6 +53,23 @@ public class SceneController : Singleton<SceneController>{
 		var level = "Level" + levelNumber.text;
 		SceneManager.LoadScene(level);
 		SoundController.Instance.PlayGameMusic();
+	}
+
+	public void WinLevel(){
+		string currentLevel = SceneManager.GetActiveScene().name.Replace("Level", "");
+		int unlockLevel = Convert.ToInt32(currentLevel) + 1;
+		BinaryManager.UnlockLevel(unlockLevel);
+	}
+
+	private void UnlockLevelButtons(){
+		int levelUnlocked = BinaryManager.GetLevelUnlocked();
+		var grid = FindObjectOfType<GridLayoutGroup>();
+		for (int i = 0; i < levelUnlocked; i++){
+			Transform level = grid.transform.GetChild(i);
+			level.GetComponent<Button>().enabled = true;
+			level.GetComponent<Image>().sprite = unlockedImage;
+			level.GetComponentInChildren<Text>().enabled = true;
+		}
 	}
 
 	public void LoadNextLevel(){
