@@ -52,7 +52,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.6
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -134,6 +134,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuMusic: {fileID: 8300000, guid: 25ba6ee79ee385942ae8641f0355a85a, type: 3}
   gameMusic: {fileID: 8300000, guid: 948a01972ef1b2843ba616d66e0631c6, type: 3}
-  collisionClip: {fileID: 0}
-  gameOverClip: {fileID: 0}
-  gameWonClip: {fileID: 0}
+  collisionClip: {fileID: 8300000, guid: 5b1c99977980e45f08f167d45aa4141b, type: 3}
+  gameOverClip: {fileID: 8300000, guid: 1250c55ece7734535ba3b2ecd8b21b29, type: 3}
+  gameWonClip: {fileID: 8300000, guid: edc741b479d634f25971a4a764d1178d, type: 3}

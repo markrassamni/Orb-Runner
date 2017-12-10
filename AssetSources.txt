@@ -8,3 +8,5 @@ Hammer: https://assetstore.unity.com/packages/3d/runic-stone-hammer-67297
 Fireball: https://assetstore.unity.com/packages/vfx/shaders/pyroclastic-explosions-10580
 Platform Texture: https://opengameart.org/content/glowing-hexagon-free-tiling-texture
 Fire: https://assetstore.unity.com/packages/vfx/particles/fire-explosions/fire-spell-effects-36825
+Collision Sound: https://freesound.org/people/zinzan_101/sounds/91045/
+Win Sound: https://freesound.org/people/LittleRobotSoundFactory/sounds/270333/

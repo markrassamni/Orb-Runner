@@ -61,6 +61,7 @@ public class Ball : MonoBehaviour {
 		if (other.gameObject.CompareTag("Weapon")){
 			Hammer hammer = other.gameObject.GetComponentInParent<Hammer>();
 			Collide(hammer.MoveDelay);
+			SoundController.Instance.PlayCollision();
 		}
 		if (other.gameObject.CompareTag("Ring")){
 			rb.velocity = Vector3.zero;
@@ -73,6 +74,7 @@ public class Ball : MonoBehaviour {
 			GameManager.Instance.LoseGame();
 		}
 		if (other.CompareTag("Fireball")){
+			SoundController.Instance.PlayCollision();
 			Fireball fireball = other.GetComponent<Fireball>();
 			Collide(fireball.MoveDelay);
 			rb.velocity = Vector3.zero;
@@ -92,6 +94,7 @@ public class Ball : MonoBehaviour {
 			GameManager.Instance.WinGame();
 		}
 		if (other.CompareTag("WallOfFire")){
+			SoundController.Instance.PlayCollision();
 			FireWall fireWall = other.GetComponentInParent<FireWall>();
 			Collide(fireWall.MoveDelay);
 			rb.velocity = Vector3.zero;

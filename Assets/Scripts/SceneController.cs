@@ -46,6 +46,7 @@ public class SceneController : Singleton<SceneController>{
 
 	public void ReloadScene(){
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		SoundController.Instance.PlayGameMusic();
 	}
 
 	public void LoadNextLevel(){

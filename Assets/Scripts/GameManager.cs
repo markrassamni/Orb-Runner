@@ -141,6 +141,7 @@ public class GameManager : Singleton<GameManager>{
 			changeScene = SceneController.Instance.LoadNextLevel;
 			winLoseText.text = "You Win!";
 		}
+		SoundController.Instance.PlayGameWon();
 		changeSceneButton.GetComponentInChildren<Text>().text = "Next Level";
 		gameOverPanel.SetActive(true);
 	}
@@ -150,6 +151,7 @@ public class GameManager : Singleton<GameManager>{
 		gameOver = true;
 		changeScene = SceneController.Instance.ReloadScene;
 		winLoseText.text = "Game Over!";
+		SoundController.Instance.PlayGameOver();
 		changeSceneButton.GetComponentInChildren<Text>().text = "Restart";
 		gameOverPanel.SetActive(true);
 	}
