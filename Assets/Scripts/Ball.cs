@@ -43,7 +43,7 @@ public class Ball : MonoBehaviour {
 		if (Input.GetKey("right") || Input.GetKey("d")){
 			rb.velocity = new Vector3(speedX, rb.velocity.y, rb.velocity.z);
 		}
-		if(Input.GetKey(KeyCode.Space) && rb.velocity.y == 0f){
+		if(Input.GetKey(KeyCode.Space) && rb.velocity.y < .05f && rb.velocity.y > -.05f){
 			rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 		}
 	}

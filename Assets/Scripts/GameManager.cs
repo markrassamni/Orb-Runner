@@ -4,6 +4,8 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>{
 
@@ -14,11 +16,16 @@ public class GameManager : Singleton<GameManager>{
 	[SerializeField] private GameObject fireWallPrefab;
 	[SerializeField] private GameObject ring;
 	[SerializeField] private GameObject pausePanel;
-	private Ball player;
+	[SerializeField] private GameObject gameOverPanel;
+	[SerializeField] private Button changeSceneButton;
+	[SerializeField] private Text winLoseText;
+ 	private Ball player;
 	private bool gameOver;
 	private bool gameWon;
 	private bool paused;
 
+	private delegate void ChangeScene();
+	private event ChangeScene changeScene;
 
 	protected override void Awake(){
 		base.Awake();
@@ -26,11 +33,14 @@ public class GameManager : Singleton<GameManager>{
 		Assert.IsNotNull(fireballPrefab);
 		Assert.IsNotNull(fireballPrefab);
 		Assert.IsNotNull(ring);
+		Assert.IsNotNull(gameOverPanel);
+		Assert.IsNotNull(pausePanel);
 		Assert.AreNotEqual(0f, fireballSpawnDelay);
 		Assert.AreNotEqual(0f, fireWallSpawnTime);
 	}
 	
 	IEnumerator Start(){
+		changeScene = SceneController.Instance.ReloadScene;
 		player = FindObjectOfType<Ball>();
 		if (fireWallSpawnTime < Mathf.Infinity){
 			StartCoroutine(SpawnFireWall());
@@ -90,18 +100,29 @@ public class GameManager : Singleton<GameManager>{
 	}
 
 	public void Pause(){
-		if(!gameOver) {
-			paused = !paused;
-			if(paused){
-				SoundController.Instance.Pause();
-				Time.timeScale = 0f;
-				pausePanel.SetActive(true);
-			} else {
-				SoundController.Instance.UnPause();
-				Time.timeScale = 1f;
-				pausePanel.SetActive(false);
-			}
+		if(gameOver) return;
+		paused = !paused;
+		if(paused){
+			SoundController.Instance.Pause();
+			Time.timeScale = 0f;
+			pausePanel.SetActive(true);
+		} else{
+			SoundController.Instance.UnPause();
+			Time.timeScale = 1f;
+			pausePanel.SetActive(false);
 		}
+	}
+
+	public void ChangeSceneClicked(){
+		if (changeScene == null){
+			Debug.LogError("changeScene Delegate Not Set!");
+			return;
+		}
+		if (paused){
+			gameOver = false;
+			Pause();
+		}
+		changeScene();
 	}
 	
 	public void GoToMenu(){
@@ -112,13 +133,24 @@ public class GameManager : Singleton<GameManager>{
 	}
 
 	public void WinGame(){
-		print("Won Game!");
 		gameWon = true;
+		if (SceneController.Instance.IsCurrentLevelLast()){
+			changeSceneButton.gameObject.SetActive(false);
+			winLoseText.text = "Game Completed!";
+		} else{
+			changeScene = SceneController.Instance.LoadNextLevel;
+			winLoseText.text = "You Win!";
+		}
+		changeSceneButton.GetComponentInChildren<Text>().text = "Next Level";
+		gameOverPanel.SetActive(true);
 	}
 
 	public void LoseGame(){
-		// TODO: remove scene change
-		SceneController.Instance.LoadGame();
+		if(gameWon) return;
 		gameOver = true;
+		changeScene = SceneController.Instance.ReloadScene;
+		winLoseText.text = "Game Over!";
+		changeSceneButton.GetComponentInChildren<Text>().text = "Restart";
+		gameOverPanel.SetActive(true);
 	}
 }
