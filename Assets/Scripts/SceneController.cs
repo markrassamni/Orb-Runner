@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneController : Singleton<SceneController>{
 
 	private string previousSceneName;
-	private readonly string[] gameSceneNames = {"Game" , "FirstLevel", "Level2"}; // TODO add names here
+	private readonly string[] gameSceneNames = {"Level1", "Level2", "Level3", "Level4", "Level5" , "FirstLevel", "Game"};
 	
 	protected override void Awake(){
 		base.Awake();
@@ -27,17 +28,8 @@ public class SceneController : Singleton<SceneController>{
 		previousSceneName = nextScene.name; 
 	}
 
-	public void LoadGame(){
-		SceneManager.LoadScene("Game");
-		SoundController.Instance.PlayGameMusic();
-	}
-
 	public void LoadMenu(){
 		SceneManager.LoadScene("MainMenu");
-	}
-
-	public void LoadInstructions(){
-		SceneManager.LoadScene("Instructions");
 	}
 
 	public void LoadCredits(){
@@ -49,14 +41,25 @@ public class SceneController : Singleton<SceneController>{
 		SoundController.Instance.PlayGameMusic();
 	}
 
+	public void LoadLevelSelect(){
+		SceneManager.LoadScene("LevelSelect");
+	}
+
+	public void LoadLevel(Text levelNumber){
+		var level = "Level" + levelNumber.text;
+		SceneManager.LoadScene(level);
+		SoundController.Instance.PlayGameMusic();
+	}
+
 	public void LoadNextLevel(){
 		if (!IsCurrentLevelLast()){
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+			SoundController.Instance.PlayGameMusic();
 		} else{
 			Debug.LogWarning("Could not load next scene, current index is the last");
 			LoadMenu();
+			SoundController.Instance.PlayMenuMusic();
 		}
-		
 	}
 
 	public bool IsCurrentLevelLast(){
