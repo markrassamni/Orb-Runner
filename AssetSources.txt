@@ -10,3 +10,4 @@ Platform Texture: https://opengameart.org/content/glowing-hexagon-free-tiling-te
 Fire: https://assetstore.unity.com/packages/vfx/particles/fire-explosions/fire-spell-effects-36825
 Collision Sound: https://freesound.org/people/zinzan_101/sounds/91045/
 Win Sound: https://freesound.org/people/LittleRobotSoundFactory/sounds/270333/
+Lose Sound: https://freesound.org/people/Surn_Thing/sounds/249561/
