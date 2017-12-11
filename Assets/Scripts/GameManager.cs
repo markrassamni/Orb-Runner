@@ -40,6 +40,7 @@ public class GameManager : Singleton<GameManager>{
 	}
 	
 	IEnumerator Start(){
+		StartCoroutine(RemovePastObstacles());
 		changeScene = SceneController.Instance.ReloadScene;
 		player = FindObjectOfType<Ball>();
 		if (fireWallSpawnTime < Mathf.Infinity){
@@ -64,6 +65,7 @@ public class GameManager : Singleton<GameManager>{
 		Fireball fireball = Instantiate(fireballPrefab);
 		fireball.transform.parent = obstacleParent.transform;
 		yield return new WaitForSeconds(fireballSpawnDelay);
+		if(gameOver || gameWon) yield break;
 		StartCoroutine(SpawnFireball());
 	}
 
@@ -92,11 +94,20 @@ public class GameManager : Singleton<GameManager>{
 				}
 			}
 		}
-		if (spawnPoint.z > ring.transform.position.z){
-			yield break;
-		}
-		Instantiate(fireWallPrefab, spawnPoint, fireWallPrefab.transform.rotation);
+		if(gameOver || gameWon || spawnPoint.z > ring.transform.position.z) yield break;
+		Instantiate(fireWallPrefab, spawnPoint, fireWallPrefab.transform.rotation, obstacleParent.transform);
 		StartCoroutine(SpawnFireWall());
+	}
+
+	private IEnumerator RemovePastObstacles(){
+		yield return new WaitForSeconds(8f);
+		foreach (Transform child in obstacleParent.transform){
+			if (child.position.z < player.transform.position.z - 20f){
+				Destroy(child.gameObject);
+			}
+		}
+		if(gameOver || gameWon) yield break;
+		StartCoroutine(RemovePastObstacles());
 	}
 
 	public void Pause(){
