@@ -28,7 +28,7 @@ public class Ball : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		if(!stopMoving)
+		if(!stopMoving && !GameManager.Instance.GameOver && !GameManager.Instance.GameWon)
 			Move();
 	}
 
@@ -112,5 +112,10 @@ public class Ball : MonoBehaviour {
 				rb.AddForce(Vector3.back * fireWall.HitForce.z, ForceMode.Impulse);
 			}
 		}
+	}
+
+	public void EndGame(){
+		rb.isKinematic = true;
+		rb.constraints = RigidbodyConstraints.FreezeAll;
 	}
 }

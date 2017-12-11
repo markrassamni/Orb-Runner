@@ -25,6 +25,14 @@ public class GameManager : Singleton<GameManager>{
 	private bool gameWon;
 	private bool paused;
 
+	public bool GameWon{
+		get{ return gameWon; }
+	}
+
+	public bool GameOver{
+		get{ return gameOver; }
+	}
+
 	private delegate void ChangeScene();
 	private event ChangeScene changeScene;
 
@@ -157,6 +165,7 @@ public class GameManager : Singleton<GameManager>{
 		}
 		SceneController.Instance.WinLevel();
 		SoundController.Instance.PlayGameWon();
+		player.EndGame();
 		changeSceneButton.GetComponentInChildren<Text>().text = "Next Level";
 		gameOverPanel.SetActive(true);
 	}
@@ -164,6 +173,7 @@ public class GameManager : Singleton<GameManager>{
 	public void LoseGame(){
 		if(gameWon) return;
 		gameOver = true;
+		player.EndGame();
 		changeScene = SceneController.Instance.ReloadScene;
 		winLoseText.text = "Game Over!";
 		SoundController.Instance.PlayGameOver();
