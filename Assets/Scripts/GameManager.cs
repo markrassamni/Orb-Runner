@@ -97,9 +97,12 @@ public class GameManager : Singleton<GameManager>{
 			yield break;
 		}
 		if (gameOver || gameWon) yield break;
-		Instantiate(fireWallPrefab, spawnPoint, fireWallPrefab.transform.rotation, obstacleParent.transform);
+		GameObject fireWall =
+			Instantiate(fireWallPrefab, spawnPoint, fireWallPrefab.transform.rotation, obstacleParent.transform);
+		StartCoroutine(fireWall.GetComponent<FireWall>().Despawn());
 		StartCoroutine(SpawnFireWall());
 	}
+
 
 	public void Pause(){
 		if(gameOver) return;
