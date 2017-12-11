@@ -64,6 +64,7 @@ public class GameManager : Singleton<GameManager>{
 		Fireball fireball = Instantiate(fireballPrefab);
 		fireball.transform.parent = obstacleParent.transform;
 		yield return new WaitForSeconds(fireballSpawnDelay);
+		if (gameOver || gameWon) yield break;
 		StartCoroutine(SpawnFireball());
 	}
 
@@ -95,7 +96,8 @@ public class GameManager : Singleton<GameManager>{
 		if (spawnPoint.z > ring.transform.position.z){
 			yield break;
 		}
-		Instantiate(fireWallPrefab, spawnPoint, fireWallPrefab.transform.rotation);
+		if (gameOver || gameWon) yield break;
+		Instantiate(fireWallPrefab, spawnPoint, fireWallPrefab.transform.rotation, obstacleParent.transform);
 		StartCoroutine(SpawnFireWall());
 	}
 
