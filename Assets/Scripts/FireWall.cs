@@ -7,6 +7,8 @@ public class FireWall : MonoBehaviour {
 	
 	[SerializeField] private Vector3 hitForce;
 	[SerializeField] private float moveDelay;
+	[SerializeField] private bool sideFire;
+	private const float despawn_time = 15f;
 
 	public Vector3 HitForce{
 		get{ return hitForce; }
@@ -22,7 +24,9 @@ public class FireWall : MonoBehaviour {
 	}
 	
 	void Update(){
-		
+		if (sideFire){
+			transform.Translate(Vector3.left * Time.deltaTime * 8.5f);
+		}
 	}
 
 	private void MoveWithPlatform(){
@@ -32,5 +36,10 @@ public class FireWall : MonoBehaviour {
 			transform.parent = hit.transform;
 			transform.position = new Vector3(0f, transform.position.y, transform.position.z);
 		}
+	}
+
+	public IEnumerator Despawn(){
+		yield return new WaitForSeconds(despawn_time);
+		Destroy(gameObject);
 	}
 }
