@@ -19,6 +19,7 @@ public class GameManager : Singleton<GameManager>{
 	[SerializeField] private GameObject gameOverPanel;
 	[SerializeField] private Button changeSceneButton;
 	[SerializeField] private Text winLoseText;
+	[SerializeField] private GameObject stopMovingGlow;
  	private Ball player;
 	private bool gameOver;
 	private bool gameWon;
@@ -35,11 +36,13 @@ public class GameManager : Singleton<GameManager>{
 		Assert.IsNotNull(ring);
 		Assert.IsNotNull(gameOverPanel);
 		Assert.IsNotNull(pausePanel);
+		Assert.IsNotNull(stopMovingGlow);
 		Assert.AreNotEqual(0f, fireballSpawnDelay);
 		Assert.AreNotEqual(0f, fireWallSpawnTime);
 	}
 	
 	IEnumerator Start(){
+		stopMovingGlow.SetActive(false);
 		StartCoroutine(RemovePastObstacles());
 		changeScene = SceneController.Instance.ReloadScene;
 		player = FindObjectOfType<Ball>();
@@ -166,5 +169,13 @@ public class GameManager : Singleton<GameManager>{
 		SoundController.Instance.PlayGameOver();
 		changeSceneButton.GetComponentInChildren<Text>().text = "Restart";
 		gameOverPanel.SetActive(true);
+	}
+
+	public void EnableGlow(){
+		stopMovingGlow.SetActive(true);
+	}
+
+	public void DisableGlow(){
+		stopMovingGlow.SetActive(false);
 	}
 }

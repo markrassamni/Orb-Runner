@@ -22,6 +22,7 @@ public class Ball : MonoBehaviour {
 			if (timeToMove <= 0f){
 				stopMoving = false;
 				timeToMove = 0f;
+				GameManager.Instance.DisableGlow();
 			}
 		}
 	}
@@ -50,6 +51,7 @@ public class Ball : MonoBehaviour {
 
 	private void Collide(float moveDelay){
 		stopMoving = true;
+		GameManager.Instance.EnableGlow();
 		if (timeToMove + moveDelay < max_move_delay){
 			timeToMove += moveDelay;
 		} else{
