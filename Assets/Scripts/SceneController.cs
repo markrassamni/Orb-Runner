@@ -63,6 +63,8 @@ public class SceneController : Singleton<SceneController>{
 
 	private void UnlockLevelButtons(){
 		int levelUnlocked = BinaryManager.GetLevelUnlocked();
+		if (levelUnlocked < 1) levelUnlocked = 1;
+		if (levelUnlocked > 5) levelUnlocked = 5;
 		var grid = FindObjectOfType<GridLayoutGroup>();
 		for (int i = 0; i < levelUnlocked; i++){
 			Transform level = grid.transform.GetChild(i);
