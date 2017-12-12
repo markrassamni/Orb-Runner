@@ -731,14 +731,16 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.6
   m_Text: 'Use A and D or arrows to move sideways
-
 
     Use S or down arrow to slow down
 
+    Press Space to Jump
 
-    Press Space to Jump'
+    Avoid Obstcles, Stay on Platorms
+
+    Jump through Ring to Win'
 --- !u!222 &1019995712
 CanvasRenderer:
   m_ObjectHideFlags: 0

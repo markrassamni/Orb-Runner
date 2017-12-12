@@ -1,9 +1,7 @@
-Tennis Ball: https://opengameart.org/content/hq-pbr-tennis-ball
 Menu Background: http://www.freeiconspng.com/img/25377
 Menu UI: https://www.assetstore.unity3d.com/en/#!/content/25468
 Music: https://www.assetstore.unity3d.com/en/#!/content/92835
 Skybox: https://www.assetstore.unity3d.com/en/#!/content/25582
-Balls: https://assetstore.unity.com/packages/3d/props/ball-pack-446
 Hammer: https://assetstore.unity.com/packages/3d/runic-stone-hammer-67297
 Fireball: https://assetstore.unity.com/packages/vfx/shaders/pyroclastic-explosions-10580
 Platform Texture: https://opengameart.org/content/glowing-hexagon-free-tiling-texture
