@@ -5,8 +5,7 @@ using UnityEngine;
 public class Credits : MonoBehaviour
 {
 
-    private float position = 0.0f;
-    private float on_update_movement = 1.0f;
+    private float on_update_movement = 0.7f;
 
 
     // Use this for initialization

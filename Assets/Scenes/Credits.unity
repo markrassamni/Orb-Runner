@@ -777,7 +777,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1656988844}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1539.6757, z: 0}
+  m_LocalPosition: {x: 0, y: -1839.6757, z: 0}
   m_LocalScale: {x: 1.0000087, y: 1.0000087, z: 1.0000087}
   m_Children: []
   m_Father: {fileID: 1206982941}
@@ -785,8 +785,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -1000}
-  m_SizeDelta: {x: 1000, y: 100}
+  m_AnchoredPosition: {x: 0, y: -1300}
+  m_SizeDelta: {x: 1250, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1656988846
 MonoBehaviour:
@@ -820,47 +820,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'START
-
-    as
-
-    sadfoaskdfkf
-
-    kopadf
-
-    asdow
-
-    sdfaokospdfka
-
-    aksdfpafksapfdok
-
-    asdfok
-
-
-    asdfoka
-
-    o
-
-    asdf
-
-
-    asdfsadf
-
-    asodfkasdf
-
-
-    asfdoa
-
-    sdfkoasdf
-
-    a
-
-    sdasfdokpojgiojadsf
-
-
-    END
-
-'
+  m_Text: "                           Orb Runner\n\n\nGame Creators:\n\nGerardo Lopez\nMark
+    Rassamni\nOmar Waldak\nWilliam Merz\n\n\nAsset Citings:\n\nMenu Background: freeiconspng.com\nMenu
+    UI: assetstore.unity3d.com\nMusic: assetstore.unity3d.com\nSkybox: assetstore.unity3d.com\nHammer:
+    assetstore.unity.com\nFireball: assetstore.unity.com\nPlatform Texture: opengameart.org\nFire:
+    assetstore.unity.com\nCollision Sound: freesound.org\nWin Sound: freesound.org\nLose
+    Sound: freesound.org\nEarth Texture: assetstore.unity.com\n\n\n                    Thanks
+    for playing!\n"
 --- !u!222 &1656988847
 CanvasRenderer:
   m_ObjectHideFlags: 0
