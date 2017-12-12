@@ -13,6 +13,9 @@ public class Ball : MonoBehaviour {
 
 	void Awake(){
 		rb = GetComponent<Rigidbody>();
+	}
+
+	void Start(){
 		SoundController.Instance.SetSfxSource(GetComponent<AudioSource>());
 	}
 
