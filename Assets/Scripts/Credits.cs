@@ -5,7 +5,7 @@ using UnityEngine;
 public class Credits : MonoBehaviour
 {
 
-    private float on_update_movement = 0.7f;
+    private float on_update_movement = 100.0f;
 
 
     // Use this for initialization
@@ -16,6 +16,6 @@ public class Credits : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(0, on_update_movement, 0);
+        transform.position += new Vector3(0, on_update_movement * Time.deltaTime, 0);
     }
 }
