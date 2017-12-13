@@ -2853,7 +2853,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 45.7, y: 8.83, z: 380.05783}
+  m_Size: {x: 45.7, y: 8.83, z: 452.01}
   m_Center: {x: 0, y: -13.06, z: 165.42397}
 --- !u!23 &1247313395
 MeshRenderer:
