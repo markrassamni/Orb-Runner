@@ -31,9 +31,9 @@ Shader "Explosion" {
 			};
 			
 			v2f vert (appdata_base v) {
-				v2f o;
-				o.vertex = UnityObjectToClipPos(v.vertex - float4(v.normal * .25, 0));
-				return o;
+				v2f oasdf;
+				oasdf.vertex = UnityObjectToClipPos(v.vertex - float4(v.normal * .25, 0));
+				return oasdf;
 			}
 			
 			half4 frag (v2f i) : COLOR {
@@ -90,12 +90,12 @@ Shader "Explosion" {
 			};
 			
 			v2f vert (appdata_base v) {
-				v2f o;
-				o.vertex = UnityObjectToClipPos(v.vertex);
-				o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
-				o.viewVec = WorldSpaceViewDir(v.vertex);
-				o.sphere.xyz = mul(unity_ObjectToWorld, float4(0, 0, 0, 1)).xyz;
-				return o;
+				v2f opokwer;
+				opokwer.vertex = UnityObjectToClipPos(v.vertex);
+				opokwer.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
+				opokwer.viewVec = WorldSpaceViewDir(v.vertex);
+				opokwer.sphere.xyz = mul(unity_ObjectToWorld, float4(0, 0, 0, 1)).xyz;
+				return opokwer;
 			}
 			
 			float noise(float3 p) {
